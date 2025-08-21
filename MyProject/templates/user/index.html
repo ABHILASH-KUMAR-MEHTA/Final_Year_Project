@@ -1,0 +1,135 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block childpage %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}" />
+    <script src=" {% static 'js/response.js' %}" defer></script>
+<!--Start of Conferbot Script-->
+    <script type="text/javascript">
+      (function (d, s, id) {
+        var js, el = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.async = true;
+        js.src = 'https://s3.ap-south-1.amazonaws.com/conferbot.defaults/dist/v1/widget.min.js';
+        js.id = id;
+        js.charset = 'UTF-8';
+        el.parentNode.insertBefore(js, el);
+        js.onload = function () {
+          var w = window.ConferbotWidget("662d3878bfe59abc0c9d7749", "live_chat");
+        };
+      })(document, 'script', 'conferbot-js');
+    </script>
+    <!--End of Conferbot Script-->
+    <script src=" {% static 'js/app.js'%}" defer></script>
+    <!--Start of Conferbot Script-->
+    <script type="text/javascript">
+      (function (d, s, id) {
+        var js, el = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.async = true;
+        js.src = 'https://s3.ap-south-1.amazonaws.com/conferbot.defaults/dist/v1/widget.min.js';
+        js.id = id;
+        js.charset = 'UTF-8';
+        el.parentNode.insertBefore(js, el);
+        js.onload = function () {
+          var w = window.ConferbotWidget("662d3878bfe59abc0c9d7749", "live_chat");
+        };
+      })(document, 'script', 'conferbot-js');
+    </script>
+    <!--End of Conferbot Script-->
+  </head>
+<!--Start of Conferbot Script-->
+    <script type="text/javascript">
+      (function (d, s, id) {
+        var js,
+          el = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.async = true;
+        js.src =
+          "https://s3.ap-south-1.amazonaws.com/conferbot.defaults/dist/v1/widget.min.js";
+        js.id = id;
+        js.charset = "UTF-8";
+        el.parentNode.insertBefore(js, el);
+
+        // Extract the chatbot ID from the URL
+        var url = window.location.href;
+        var chatbotID = url.split("/v2/")[1].split("/")[0];
+
+        // Initializes the widget when the script is ready
+        // js.onload = function () {
+        //   var w = window.ConferbotWidget(chatbotID, "fullpage_chat");
+        // };
+      })(document, "script", "conferbot-js");
+    </script>
+    <!--End of Conferbot Script-->
+<div class="row" >
+
+    <div class="col-sm-12 " style="">
+        <!-- start slider-->
+         <div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="carousel" data-bs-target="#carouselExampleCaptions" data-interval="2000" >
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/a22.jpg' %}" style="max-height:450px;" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Sign Guide</h5>
+        <p>It is a rich combination of finger-spelling, hand gestures, body language, facial expressions, timing, touch, and anything else that communicates thoughts or ideas without the use of speech. Deaf people are the main users of sign language. Some hard of hearing people use it as a handy means of communication too</p>
+      </div>
+    </div>
+   {% for i in sd %}
+    <div class="carousel-item">
+      <img src="/{{i.slider_picture}}"style="max-height:450px;" class="d-block w-100 " alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{i.headlines}}</h5>
+        <p>{{i.slider_dec}}</p>
+      </div>
+    </div>
+    {% endfor%}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+        <!-- end  slider-->
+    </div>
+
+<!--Start of Conferbot Script-->
+    <script type="text/javascript">
+      (function (d, s, id) {
+        var js, el = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.async = true;
+        js.src = 'https://s3.ap-south-1.amazonaws.com/conferbot.defaults/dist/v1/widget.min.js';
+        js.id = id;
+        js.charset = 'UTF-8';
+        el.parentNode.insertBefore(js, el);
+        js.onload = function () {
+          var w = window.ConferbotWidget("662d3878bfe59abc0c9d7749", "live_chat");
+        };
+      })(document, 'script', 'conferbot-js');
+    </script>
+    <!--End of Conferbot Script-->
+{% endblock %}

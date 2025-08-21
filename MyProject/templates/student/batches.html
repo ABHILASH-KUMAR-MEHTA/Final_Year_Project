@@ -1,0 +1,40 @@
+{% extends 'base1.html'%}
+{% load static %}
+{% load embed_video_tags %}
+{% block studentzone %}
+{% if  not request.session.user%}
+<script>
+    alert('you have to login first');
+    location.href='/user/login/';
+</script>
+{% endif %}
+<div class="text-center fs-2 mt-2">
+    Therapy <b class="txt-mycolor1">Sessions</b>
+</div>
+
+
+<div class="row ">
+    <div class="col-sm-12 mx-auto ">
+        <div class="row " >
+             <!-- video category-->
+            {% for i in obj %}
+            <div class="col-lg-4 col-md-4 col-sm-12 ">
+
+            <div class="card-body ">
+                <div class="card  ">
+
+                 {% video i.therapy 'small'%}
+
+                </div>
+                <br>
+
+           </div>
+
+
+<!-- end video category-->
+        </div>
+              {% endfor %}
+    </div>
+</div>
+    </div>
+{% endblock %}

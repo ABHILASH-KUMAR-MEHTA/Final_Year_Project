@@ -1,0 +1,963 @@
+{% extends 'base1.html'%}
+{% load static %}
+{% block studentzone %}
+{% if  not request.session.user%}
+<script>
+    alert('you have to login first');
+    location.href='/user/login/';
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Job</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="shortcut icon" href="favicon1.png" type="image/x-icon">
+  <link rel="stylesheet" href="job.css">
+  <link rel="stylesheet" href="http://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!-- END LINE -->
+
+
+<style>
+
+@import url('http://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  /* background-image: url(bg.png);
+  background-repeat: no-repeat;
+  background-size: cover; */
+
+  background-color: rgb(214, 211, 211);
+}
+
+#container-1 .card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.abhi {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 50px;
+  color: #06A3DA;
+}
+
+.sub{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 40px;
+  font-weight: bold;
+}
+.sub span{
+  color: rgb(199, 29, 29);
+}
+
+#displaytext {
+  width: 800px;
+  height: 400px;
+  position: absolute;
+  top: calc(50% - 150px);
+  left: calc(50% - 377px);
+  border-radius: 25px;
+
+}
+
+#close {
+  cursor: pointer;
+  font-size: 25px;
+  position: relative;
+  left: calc(100% - 434px);
+  top: calc(100% - 386px);
+}
+
+.info {
+  position: absolute;
+  top: calc(100% - 303px);
+  /* text-align: center; */
+  left: calc(50% - 194px);
+}
+/********** Template CSS **********/
+:root {
+--primary: #06A3DA;
+--secondary: #34AD54;
+--light: #EEF9FF;
+--dark: #091E3E;
+}
+
+/*** Section Title ***/
+.section-title::before {
+position: absolute;
+content: "";
+width: 130px;
+height: 5px;
+left: 0;
+bottom: 0;
+background: var(--primary);
+border-radius: 2px;
+}
+
+.section-title.text-center::before {
+left: 50%;
+margin-left: -75px;
+}
+
+.section-title.section-title-sm::before {
+width: 90px;
+height: 3px;
+}
+
+.section-title::after {
+position: absolute;
+content: "";
+width: 6px;
+height: 5px;
+bottom: 0px;
+background: #FFFFFF;
+-webkit-animation: section-title-run 5s infinite linear;
+animation: section-title-run 5s infinite linear;
+}
+
+.section-title.section-title-sm::after {
+width: 4px;
+height: 3px;
+}
+
+.section-title.text-center::after {
+-webkit-animation: section-title-run-center 5s infinite linear;
+animation: section-title-run-center 5s infinite linear;
+}
+
+.section-title.section-title-sm::after {
+-webkit-animation: section-title-run-sm 5s infinite linear;
+animation: section-title-run-sm 5s infinite linear;
+}
+
+@-webkit-keyframes section-title-run {
+0% {left: 0; } 50% { left : 135px; } 100% { left: 0; }
+}
+
+@-webkit-keyframes section-title-run-center {
+0% { left: 50%; margin-left: -75px; } 50% { left : 50%; margin-left: 45px; } 100% { left: 50%; margin-left: -75px; }
+}
+
+@-webkit-keyframes section-title-run-sm {
+0% {left: 0; } 50% { left : 85px; } 100% { left: 0; }
+}
+.hov{
+  background-color: #06A3DA;
+  color: #FFFFFF;
+}
+.hov :hover{
+  background-color: #06A3DA;
+  color: #091E3E;
+}
+
+
+section .cards .images{
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  padding: 3px;
+  background-color: rgb(29, 120, 115);
+}
+section .cards .images:hover{
+  transform: scale(1.1) ease;
+}
+section .cards .images img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
+.cards{
+  background: #fff;
+  border-radius: 20px;
+  position: relative;
+  margin: 10px 0;
+  width: 280px;
+}
+.cards::before{
+ content: " ";
+ position: absolute;
+ height: 45%;
+ width: 100%;
+ border-radius: 20px 20px 0 0;
+ background:  #06A3DA;
+}
+.cards .cards-contents{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  position: relative;
+  z-index: 10;
+}
+.cards .names-profession{
+  display: flex;
+  flex-direction:column ;
+  align-items: center;
+  margin-top: 10px;
+  color: #333;
+}
+.names-profession .names{
+  font-size: 20px;
+  font-weight: 600;
+}
+.names-profession .profession{
+  font-size: 20px;
+  font-weight: 500;
+}
+.card .ratings{
+  margin-top: 5px;
+  font-weight: 500;
+  font-size: 18px;
+
+}
+.cards .buttons{
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5px;
+  text-align: center;
+}
+.cards .buttoner button{
+  background:  #06A3DA;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.buttoner button:hover{
+  color: black;
+  background: lightseagreen;
+}
+.swiper-pagination{
+  color: #06A3DA;
+  padding: 90px;
+}
+.pad{
+  padding-top: 150px;
+}
+.yansh{
+  transition: transform 0.3s ;
+}
+.yansh:hover {
+  transform: scale(1.05);
+}
+
+</style>
+
+</head>
+<body>
+  <!-------------worker profile------->
+  <div class="container-fluid py-1 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-1">
+        <div class="section-title text-center position-relative pb-3 mb-3 mx-auto" style="max-width: 600px;">
+            <h2 class="fw-bold abhi text-uppercase">JOBS for SPECIALLY ABLED </h2>
+            <h1 class="mb-0 sub">Find Your <span>Dream Jobs</span> Here <br> <span>Easy</span> & <span>Fast</span> </h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s">
+        </div>
+        <section>
+          <div class="swiper mySwiper container">
+            <div class="swiper-wrapper content">
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Machine Oper.</span>
+                    <span class="profession">Darpan Printers</span>
+                  </div>
+                  <div class="ratings">
+                   <span class="paise"><i class="fa-solid fa-indian-rupee-sign"></i> 12,000 - 25,000</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://apna.co/job/agra/printing-machine-operator-403209422?search=true"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Delivery Boy</span>
+                    <span class="profession">Ridhi Sidhi Mobile</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-indian-rupee-sign"></i> 8,000 - 9,000</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://apna.co/job/agra/delivery-boy-472334067?search=true"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Cleaner</span>
+                    <span class="profession">Urban Company</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-indian-rupee-sign"></i> 25,000 - 30,000</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://apna.co/job/agra/cleaner-684342623?search=true"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Office Boy</span>
+                    <span class="profession">Bharat Vyavasaya</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-indian-rupee-sign"></i> 8,000 - 10,000</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://apna.co/job/agra/office-boy-peon-881166481?search=true">                    <button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Caretaker</span>
+                    <span class="profession">Saroj Villa</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-indian-rupee-sign"></i> 7,000 - 8,000</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://apna.co/job/agra/caretaker-812198503?search=true"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Machine Oper.</span>
+                    <span class="profession">Jai Enterprises</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-indian-rupee-sign"></i> 5,000 - 8,000</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://apna.co/job/agra/cnc-machine-operator-856276280?search=true"> <button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Computer Oper.</span>
+                    <span class="profession">Braavosi Retail</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-indian-rupee-sign"></i> 8,000 - 13,000</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://apna.co/job/agra/computer-operator-945024568?search=true"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Delivery Boy </span>
+                    <span class="profession">Okaygo</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-indian-rupee-sign"></i> 15,000 - 20,000</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://apna.co/job/gwalior/delivery-boy-biker-503268499?search=true"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Govt. Scheme</span>
+                    <span class="profession">A.P.D</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 080-25475165</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.apd-india.org/?gad_source=1&gclid=EAIaIQobChMI4vSn1ODYhQMV86tmAh1EcghnEAAYAiAAEgLKkfD_BwE"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Machine Oper.</span>
+                    <span class="profession">M/S Warsi Medico</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-indian-rupee-sign"></i> 10,000 - 15,000</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://apna.co/job/agra/laser-cutting-cum-bending-machine-operator-546915715?search=true"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Govt. Scheme</span>
+                    <span class="profession">N.D.F.D.C</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 14456</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://depwd.gov.in/"><button class="aboutMe"><i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/USE.png' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Govt. SchemeS</span>
+                    <span class="profession">India.Gov.In</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-envelope"></i> indiaportal@gov.in</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.india.gov.in/topics/social-development/disabled?page=2"><button class="aboutMe"><i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </section>
+
+        <div class="row pad">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/1.jpg' %}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Printing Machin Operator</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Darpan Printers & Lamination</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-location-dot"></i> Loha Mandi, Agra</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-indian-rupee-sign"></i> 15,000 - 25,000</span>
+                  <span class=" col-12">
+                    <br>
+
+                  </span>
+                </p>
+                <a href="https://apna.co/job/agra/printing-machine-operator-403209422?search=true" class="hov btn  col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/1.jpg' %}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Caretaker</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12">Saroj Villa</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Barauli Ahir, Agra</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-indian-rupee-sign"></i> 5,000 - 8,000 </span><br>
+                </p>
+                <a href="https://apna.co/job/agra/caretaker-812198503?search=true" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/1.jpg' %}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Laser Machine Operator</span>
+                </h5>
+                <p class="card-text placeholder-glow ">
+                  <span class=" col-12">M/S Warsi Medico</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Industrial Estate, Agra</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-indian-rupee-sign"></i> 10,000 - 15,000 </span><br>
+                  <span class=" col-12">
+                  </span>
+                </p>
+                <a href="https://apna.co/job/agra/laser-cutting-cum-bending-machine-operator-546915715?search=true" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/1.jpg' %}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center ">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Cleaner</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12">Urban Company</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> All areas in Agra</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-indian-rupee-sign"></i> 25,000 - 30,000 </span><br>
+
+                </p>
+                <a href="https://apna.co/job/agra/cleaner-684342623?search=true" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mt-5 mb-5">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/1.jpg' %}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Office Boy</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Bharat Vyavasaya Pvt.Ltd.</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-location-dot"></i> Civil Lines, Agra</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-indian-rupee-sign"></i> 8,000 - 10,000</span>
+                  <span class=" col-12">
+                    <br>
+                  </span>
+                </p>
+                <a href="https://apna.co/job/agra/office-boy-peon-881166481?search=true" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/1.jpg' %}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Machine Operator</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12">Jai Enterprises</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Civil Lines, Agra</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-indian-rupee-sign"></i> 5,000 - 8,000 </span><br>
+                </p>
+                <a href="https://apna.co/job/agra/cnc-machine-operator-856276280?search=true" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/1.jpg' %}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Computer Operator</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Braavosi Retail</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Kamla Nagar, Agra</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-indian-rupee-sign"></i> 8,000 - 15,000 </span><br>
+                  <span class=" col-12">
+                  </span>
+                </p>
+                <a href="https://apna.co/job/agra/computer-operator-945024568?search=true" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/1.jpg' %}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center ">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Delivery Boy</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12">Ridhi Sidhi Mobile Point</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Civil Lines, Agra</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-indian-rupee-sign"></i> 8,000 - 10,000 </span><br>
+
+                </p>
+                <a href="https://apna.co/job/agra/delivery-boy-472334067?search=true" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="section-title text-center position-relative pb-3 mb-3 mx-auto" style="max-width: 600px;">
+          <h1 class="mb-0 sub"><span>Govt. Scheme</span> & <span>N.G.O</span></h1>
+      </div>
+
+      <div class="row mt-5 mb-5">
+
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card yansh" aria-hidden="true">
+            <img src="{% static 'images/3.png' %}" class="card-img-top"
+              alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title placeholder-glow">
+                <span class=" col-12">Govt. Scheme</span>
+              </h5>
+              <p class="card-text placeholder-glow">
+                <span class=" col-12">India.Gov.In</span><br>
+                <span class="col-12"><i class="fa-solid fa-envelope"></i> indiaportal@gov.in</span>
+              </p>
+              <a href="https://www.india.gov.in/topics/social-development/disabled?page=2" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card yansh" aria-hidden="true">
+            <img src="{% static 'images/5.jpg' %}" class="card-img-top"
+              alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title placeholder-glow">
+                <span class=" col-12"> A.P.D NGO</span>
+              </h5>
+              <p class="card-text ">
+                <span class=" col-12"></span>
+                <span class=" col-12">People With Disability</span><br>
+                <span class="col-12"><i class="fa-solid fa-phone"></i> 080-25475165</span>
+                <span class=" col-12">
+                </span>
+              </p>
+              <a href="https://www.apd-india.org/?gad_source=1&gclid=EAIaIQobChMI4vSn1ODYhQMV86tmAh1EcghnEAAYAiAAEgLKkfD_BwE" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card yansh" aria-hidden="true">
+            <img src="{% static 'images/3.png' %}" class="card-img-top"
+              alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title placeholder-glow">
+                <span class=" col-12">Govt. Scheme</span>
+              </h5>
+              <p class="card-text placeholder-glow">
+                <span class=" col-12"></span>
+                <span class=" col-12"> N.D.F.D.C </span><br>
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 14456</span>
+                <span class=" col-12">
+                  <br>
+                </span>
+              </p>
+              <a href="https://depwd.gov.in/" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card yansh" aria-hidden="true">
+            <img src="{% static 'images/5.jpg' %}" class="card-img-top"
+              alt="...">
+            <div class="card-body text-center ">
+              <h5 class="card-title placeholder-glow">
+                <span class=" col-12">Non Govt. Organization</span>
+              </h5>
+              <p class="card-text placeholder-glow">
+                <span class=" col-12">All India Sports Council Of Deaf</span><br>
+                <span class="col-12"><i class="fa-solid fa-phone"></i> 7942678227</span>
+
+              </p>
+              <a href="" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row mt-5 mb-5">
+
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card yansh" aria-hidden="true">
+            <img src="{% static 'images/3.png' %}" class="card-img-top"
+              alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title placeholder-glow">
+                <span class=" col-12">Govt. Scheme</span>
+              </h5>
+              <p class="card-text placeholder-glow">
+                <span class=" col-12"></span>
+                <span class=" col-12"> N.D.F.D.C </span><br>
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 14456</span>
+                <span class=" col-12">
+                  <br>
+                </span>
+              </p>
+              <a href="https://depwd.gov.in/" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card yansh" aria-hidden="true">
+            <img src="{% static 'images/5.jpg' %}" class="card-img-top"
+              alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title placeholder-glow">
+                <span class=" col-12">Non Govt. Organization </span>
+              </h5>
+              <p class="card-text ">
+                <span class=" col-12"></span>
+                <span class=" col-12">National Association of Deaf</span><br>
+                <span class="col-12"><i class="fa-solid fa-phone"></i> 080-25475165</span>
+                <span class=" col-12">
+                </span>
+              </p>
+              <a href="http://nadindia.org/AboutUs/Affiliations" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card yansh" aria-hidden="true">
+            <img src="{% static 'images/3.png' %}" class="card-img-top"
+              alt="...">
+            <div class="card-body text-center">
+              <h5 class="card-title placeholder-glow">
+                <span class=" col-12">Govt. Scheme</span>
+              </h5>
+              <p class="card-text placeholder-glow">
+                <span class=" col-12">India.Gov.In</span><br>
+                <span class="col-12"><i class="fa-solid fa-envelope"></i> indiaportal@gov.in</span>
+              </p>
+              <a href="https://www.india.gov.in/topics/social-development/disabled?page=2" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card yansh" aria-hidden="true">
+            <img src="{% static 'images/5.jpg' %}" class="card-img-top"
+              alt="...">
+            <div class="card-body text-center ">
+              <h5 class="card-title placeholder-glow">
+                <span class=" col-12">Global Giving N.G.O</span>
+              </h5>
+              <p class="card-text placeholder-glow">
+                <span class=" col-12">HELP DEAF & DUMB CHILDREN</span><br>
+                <span class="col-12"><i class="fa-solid fa-phone"></i> 9760244011</span>
+
+              </p>
+              <a href="https://www.globalgiving.org/projects/help-deaf-dumb-children/" class="hov btn   col-12"><i class="fa-solid fa-user-check"></i> Apply Now </a>
+            </div>
+            <div class="card-footer text-center">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+</div>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 4,
+    spaceBetween: 60,
+    slidesPerGroup: 3,
+    loop: true,
+    autoplay:true,
+    autoplayTimeout:1000,
+    autoplayHoverPause:true,
+    loopFillGroupWithBlank: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl:".swiper-button-next",
+      prevEl:".swiper-button-prev",
+    }
+  });
+  /*let execution = 0;
+  function controler(x){
+// execution = execution + x;
+photoShow(execution);
+    execution++;
+}
+//slideshow
+setInterval(() =>{
+    photoShow(execution)
+    execution++
+},3000)
+
+function photoShow(photoNo){
+    let photos = document.getElementsByClassName("mySwiper");
+    for(let y of photos)
+    {
+        y.style.display = "none"
+    }
+    if(photoNo == photos.length){
+        execution = 0;
+        photoNo = 0;
+    }
+    if(photoNo < 0){
+        execution = photos.length - 1;
+        photoNo = photos.length - 1;
+    }
+    photos[photoNo].style.display = "block";
+}*/
+
+</script>
+<!-- <script src="abhilash.js"></script> -->
+</body>
+</html>
+{% endblock %}

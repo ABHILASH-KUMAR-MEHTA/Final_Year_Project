@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block childpage %}
+<div class="text-center fs-2">
+    <b class="txt-mycolor">Login</b>
+</div>
+<div class="row">
+    <div class="col-sm-6 mx-auto">
+        <form method="post">
+            {% csrf_token %}
+            USERNAME <input type="text" name="email" required placeholder="username..." class="form-control">
+            PASSWORD <input type="text" name="passwd" required placeholder="password..." class="form-control">
+            <input type="submit" value="LOGIN" class="btn bg-mycolor1">
+        </form>
+    </div>
+</div>
+{% endblock %}

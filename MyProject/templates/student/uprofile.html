@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'base1.html'%}
+{% load static %}
+{% block studentzone %}
+{% if  not request.session.user%}
+<script>
+    alert('you have to login first');
+    location.href='/user/login/';
+</script>
+{% endif %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}" />
+    <script src=" {% static 'js/response.js' %}" defer></script>
+    <script src=" {% static 'js/app.js'%}" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="chat-header">
+        <div class="logo">
+          <img src="{% static 'images/cwt.jpg' %}" alt="cwt" />
+        </div>
+        <div class="title">Lets Consult with our Doctor</div>
+      </div>
+      <div class="chat-body"></div>
+      <div class="chat-input">
+        <div class="input-sec">
+          <input type="text" id="txtInput" placeholder="Typ here" autofocus />
+        </div>
+        <div class="send">
+          <img src="{% static 'images/send.svg' %}" alt="send" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+{% endblock %}

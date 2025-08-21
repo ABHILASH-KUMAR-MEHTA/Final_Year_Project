@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/all.css' %}"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}" />
+    <script src=" {% static 'js/response.js' %}" defer></script>
+    <script src=" {% static 'js/app.js'%}" defer></script>
+<!--Start of Conferbot Script-->
+    <script type="text/javascript">
+      (function (d, s, id) {
+        var js, el = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.async = true;
+        js.src = 'https://s3.ap-south-1.amazonaws.com/conferbot.defaults/dist/v1/widget.min.js';
+        js.id = id;
+        js.charset = 'UTF-8';
+        el.parentNode.insertBefore(js, el);
+        js.onload = function () {
+          var w = window.ConferbotWidget("662d3878bfe59abc0c9d7749", "live_chat");
+        };
+      })(document, 'script', 'conferbot-js');
+    </script>
+    <!--End of Conferbot Script-->
+    <style>
+        .t1{
+        font-size:14px
+        }
+        :root{
+        --bgcolor:linear-gradient(45deg,#4db6ac  ,#26a69a);
+        --txtcolor:#42a5f5;
+        }
+        .bg-mycolor{
+              background:var(--bgcolor) !important;
+        }
+        .bg-mycolor1{
+              background:#ff4081;
+        }
+        .txt-mycolor{
+        color:var(--txtcolor);
+        }
+        .txt-mycolor1{
+        color:#ff4081;
+        }
+        .txt-mycolor2{
+         color: #004d40 ;
+          }
+     .fa-brands{
+         border:1px solid white;
+         padding:.3%;
+          border-radius:30%;
+         transition:all 1s;
+
+     }
+        .fa-brands:hover{
+              transform:rotate(360deg);
+              transition:all 1s;
+              color:#2BBBAD
+              background:white;
+
+        }
+        #menu{
+            background: transparent !important;
+        }
+        #menu ul li a{
+             color:white;
+        }
+        #menu ul li a:hover{
+               background:white;
+               color:#ec407a ;
+               border-radius:10px;
+
+               transition:all 1s;
+        }
+        .footer1{
+            min-height:300px;
+        }
+        .footer2{
+              min-height:50px;
+              margin-top:.1px;
+        }
+    </style>
+</head>
+
+</div>
+
+
+
+
+
+<body>
+<script src="{% static 'js/bootstrap.bundle.js'%}"></script>
+<!--Start of Conferbot Script-->
+    <script type="text/javascript">
+      (function (d, s, id) {
+        var js,
+          el = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.async = true;
+        js.src =
+          "https://s3.ap-south-1.amazonaws.com/conferbot.defaults/dist/v1/widget.min.js";
+        js.id = id;
+        js.charset = "UTF-8";
+        el.parentNode.insertBefore(js, el);
+
+        // Extract the chatbot ID from the URL
+        var url = window.location.href;
+        var chatbotID = url.split("/v2/")[1].split("/")[0];
+
+        // Initializes the widget when the script is ready
+        // js.onload = function () {
+        //   var w = window.ConferbotWidget(chatbotID, "fullpage_chat");
+        // };
+      })(document, "script", "conferbot-js");
+    </script>
+    <!--End of Conferbot Script-->
+<div class="container-fluid">
+    <div class="row t1 text-center bg-mycolor text-light py-1">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <i class="fa-solid fa-phone"></i>+91,6306745623
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <i class="fa-solid fa-envelope"></i>
+            abhi@gmail.com
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            Welcome Our Learning Hub
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-youtube"></i>
+        </div>
+    </div>
+    <div class="row t2">
+        <div class="col-sm-10 mx-auto">
+            <div class="row py-3">
+                <div class="col-sm-4 fs-5"><b>
+                    <span class="txt-mycolor1">SIGN GUIDE FOR </span> </b> <span class="txt-mycolor2">SPECIALLY ABLED PEOPLE
+                    <i class="fa-solid fa-laptop-file"></i></span>
+                </div>
+                <div class="col-sm-5"></div>
+                <div class="col-sm-3 text-end">
+                    <a href="/user/contact/" class="btn    rounded-pill text-light" style="background:#ff4081">Enquiry</a>
+<!--                    <a href="#" class="btn  rounded-pill text-bg-dark">Feedback</a>-->
+                    <a href="/user/login/" class="btn  rounded-pill text-bg-dark">Login</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row t3 " style="background:#004d40 ">
+        <div class="col-sm-10 mx-auto">
+    <!-- start navbar -->
+            <nav class="navbar navbar-expand-lg bg-body-tertiary" id="menu">
+  <div class="container-fluid">
+
+    <button class="navbar-toggler txt-mycolor" type="button"  data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon "></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="/user/index/">
+              <i class="fa-solid fa-house"></i>
+              Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="/user/sign/">
+                <i class="fa-solid fa-house"></i>
+                Recoginition</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/about/"><i class="fa fa-info-circle"> </i>
+              Sign Language Translator</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link" href="/student/notes/"><i class="fa fa-info-circle"> </i>
+              Tutorials</a>
+        </li>
+           <li class="nav-item">
+          <a class="nav-link" href="/user/registration/"><i class="fa-solid fa-key"></i>
+              Registration</a>
+        </li>
+
+
+
+
+
+
+
+
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+    <!-- end navbar -->
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-sm-12" style="min-height:400px;" >
+{% block childpage %}
+{% endblock %}
+    </div>
+    <div class="row footer1 text-bg-dark">
+    <div class="col-sm-4 fs-2 p-5">
+        SIGN <b class="txt-mycolor">Learning
+                    <i class="fa-solid fa-laptop-file"></i></b>
+    </div>
+    <div class="col-sm-4 p-5">
+        <div class="contact">
+
+                        <strong> Address</strong>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Plot No-44, Behind H.P Petrol Pump
+                        </p>
+            <p><i class="fas fa-phone-alt"></i>
+                <a href="tel:+919760244011">+91-9760244011</a>
+            </p>
+            <p> <i class="far fa-envelope"></i>
+                <a href="mailto:ys676644@gmail.com">ys676644@gmail.com</a>
+            </p>
+                    </div>
+
+    </div>
+    <div class="col-sm-4 p-5">
+        <p>
+             <strong>Quick Links</strong>
+        </p>
+        <ul style="list-style-type:disc;">
+          <li><a href="/user/contact/">Contact Us</a><br></li>
+          <li><a href="/user/about/">About Us</a><br></li>
+<!--          <li><a href="/user/feedback/">Success Stories</a><br></li>-->
+
+</ul>
+
+
+    </div>
+
+</div>
+<div class="row footer2 text-bg-dark ">
+    <div class="col-sm-10 text-center ">
+ <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-youtube"></i>
+            <p>©copyright. All rights reserved</p>
+        </div>
+</div>
+</body>
+</html>

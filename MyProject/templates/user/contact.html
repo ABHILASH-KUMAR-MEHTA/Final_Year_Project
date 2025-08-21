@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block childpage %}
+<style>
+    .f{
+          min-height:300px;
+    }
+</style>
+<div class="text-center fs-2">Contact
+    <b class="txt-mycolor">Us</b>
+
+</div>
+<p class="text-center">You may contact number or fill this form any
+        time you need professional support or have any question </p>
+<div class="row f ">
+
+    <div class="col-sm-10 mx-auto">
+        <div class="row p-4" style="background:rgba(205, 220, 57, 0.1)" >
+            <div class="col-sm-6">
+          <h4><u class="txt-mycolor">Send </u>Your Message</h4>
+                <form method="post" >
+                    {% csrf_token %}
+                Your Name:
+                <input type="text" name="name"class="form-control m-1" placeholder="Enter Your Name" required>
+                Your Contact:
+                <input type="number" name="mobile"class="form-control m1"  required placeholder="Enter Your Contact Number">
+                Your Email:
+                <input type="email" name="email" class="form-control  required m1"placeholder="Enter Your Email">
+                Your Message:<br>
+                    <textarea rows="2"  required name="msg"class="form-control m1"cols="30" placeholder="Enter Your Message here"></textarea>
+                   <br>
+                    <input type="submit" class="btn btn-outline-danger" value="Send Message">
+                </form>
+            </div>
+            <div class="col-sm-6 p-4 " style="background:rgba(255, 255, 255, 0.1) ;">
+                <h4>Contact Info</h4>
+                    <div class="contact">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <strong>Office Address</strong>
+                        <p>
+                            Plot No-44, Behind H.P Petrol Pump,<br />
+                            Tedhi Pulia Ring Rd, Sector 5,<br />
+                            Vikas Nagar, Lucknow <br />
+                            Uttar Pradesh 226022
+                        </p>
+                    </div>
+                    <div class="contact">
+                        <i class="fas fa-phone-alt"></i>
+                        <strong>Call Us</strong>
+                        <p>
+                            <a href="tel:+916345567879">+9156787980</a><br>
+                            <a href="tel:+91 3546798090">+91465768798</a>
+                        </p>
+                    </div>
+                    <div class="contact">
+                        <i class="far fa-envelope"></i>
+                        <strong>Mail Us</strong>
+                        <p>
+                            <a href="mailto:mamtaya619@gmail.com">mamtaya619@gmail.com</a><br>
+                            <a href="mailto:mamta20021225@gmail.com">ys676644gmail.com</a>
+                        </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

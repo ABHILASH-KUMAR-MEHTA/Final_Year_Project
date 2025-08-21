@@ -1,0 +1,1203 @@
+{% extends 'base1.html'%}
+{% load static %}
+{% block studentzone %}
+{% if  not request.session.user%}
+<script>
+    alert('you have to login first');
+    location.href='/user/login/';
+</script>
+{% endif %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Job</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="shortcut icon" href="favicon1.png" type="image/x-icon">
+  <link rel="stylesheet" href="job.css">
+  <link rel="stylesheet" href="http://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <!-- END LINE -->
+
+
+<style>
+
+@import url('http://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  /* background-image: url(bg.png);
+  background-repeat: no-repeat;
+  background-size: cover; */
+
+  background-color: rgb(214, 211, 211);
+}
+
+#container-1 .card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.abhi {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 50px;
+  color: #06A3DA;
+}
+
+.sub{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 40px;
+  font-weight: bold;
+}
+.sub span{
+  color: rgb(199, 29, 29);
+}
+
+#displaytext {
+  width: 800px;
+  height: 400px;
+  position: absolute;
+  top: calc(50% - 150px);
+  left: calc(50% - 377px);
+  border-radius: 25px;
+
+}
+
+#close {
+  cursor: pointer;
+  font-size: 25px;
+  position: relative;
+  left: calc(100% - 434px);
+  top: calc(100% - 386px);
+}
+
+.info {
+  position: absolute;
+  top: calc(100% - 303px);
+  /* text-align: center; */
+  left: calc(50% - 194px);
+}
+/********** Template CSS **********/
+:root {
+--primary: #06A3DA;
+--secondary: #34AD54;
+--light: #EEF9FF;
+--dark: #091E3E;
+}
+
+/*** Section Title ***/
+.section-title::before {
+position: absolute;
+content: "";
+width: 130px;
+height: 5px;
+left: 0;
+bottom: 0;
+background: var(--primary);
+border-radius: 2px;
+}
+
+.section-title.text-center::before {
+left: 50%;
+margin-left: -75px;
+}
+
+.section-title.section-title-sm::before {
+width: 90px;
+height: 3px;
+}
+
+.section-title::after {
+position: absolute;
+content: "";
+width: 6px;
+height: 5px;
+bottom: 0px;
+background: #FFFFFF;
+-webkit-animation: section-title-run 5s infinite linear;
+animation: section-title-run 5s infinite linear;
+}
+
+.section-title.section-title-sm::after {
+width: 4px;
+height: 3px;
+}
+
+.section-title.text-center::after {
+-webkit-animation: section-title-run-center 5s infinite linear;
+animation: section-title-run-center 5s infinite linear;
+}
+
+.section-title.section-title-sm::after {
+-webkit-animation: section-title-run-sm 5s infinite linear;
+animation: section-title-run-sm 5s infinite linear;
+}
+
+@-webkit-keyframes section-title-run {
+0% {left: 0; } 50% { left : 135px; } 100% { left: 0; }
+}
+
+@-webkit-keyframes section-title-run-center {
+0% { left: 50%; margin-left: -75px; } 50% { left : 50%; margin-left: 45px; } 100% { left: 50%; margin-left: -75px; }
+}
+
+@-webkit-keyframes section-title-run-sm {
+0% {left: 0; } 50% { left : 85px; } 100% { left: 0; }
+}
+.hov{
+  background-color: #06A3DA;
+  color: #FFFFFF;
+}
+.hov :hover{
+  background-color: #06A3DA;
+  color: #091E3E;
+}
+
+
+section .cards .images{
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  padding: 3px;
+  background-color: rgb(29, 120, 115);
+  transition: transform .2s;
+
+}
+section .cards .images:hover{
+  transform: scale(1.1);
+}
+section .cards .images img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
+.cards{
+  background: #fff;
+  border-radius: 20px;
+  position: relative;
+  margin: 10px 0;
+  width: 280px;
+
+}
+.cards::before{
+ content: " ";
+ position: absolute;
+ height: 45%;
+ width: 100%;
+ border-radius: 20px 20px 0 0;
+ background:  #06A3DA;
+}
+
+.cards .cards-contents{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  position: relative;
+  z-index: 10;
+}
+.cards .names-profession{
+  display: flex;
+  flex-direction:column ;
+  align-items: center;
+  margin-top: 10px;
+  color: #333;
+}
+.names-profession .names{
+  font-size: 20px;
+  font-weight: 600;
+}
+.names-profession .profession{
+  font-size: 20px;
+  font-weight: 500;
+}
+.card .ratings{
+  margin-top: 5px;
+  font-weight: 500;
+  font-size: 18px;
+
+}
+.cards .buttons{
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5px;
+  text-align: center;
+}
+.cards .buttoner button{
+  background:  #06A3DA;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.buttoner button:hover{
+  color: black;
+  background: lightseagreen;
+}
+.swiper-pagination{
+  color: #06A3DA;
+  padding: 90px;
+}
+.pad{
+  padding-top: 120px;
+}
+.zoom {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 2% 2% 0 0;
+  transition: transform .2s;
+  object-fit: cover;
+
+  margin: 0 auto;
+}
+/* .zoom:hover { */
+  /* transform: scale(1.05);  */
+
+.yansh{
+  transition: transform 0.3s ;
+}
+.yansh:hover {
+  transform: scale(1.05);
+}
+
+</style>
+
+</head>
+<body>
+  <!-------------worker profile------->
+  <div class="container-fluid py-1 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-1">
+        <div class="section-title text-center position-relative pb-3 mb-3 mx-auto" style="max-width: 600px;">
+            <h2 class="fw-bold abhi text-uppercase"> HELPER for SPEACILALY ABLED</h2>
+            <h1 class="mb-0 sub">Find Best <span>Ward Boys</span> & <span>Nurses</span> Here  </h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s">
+        </div>
+        <section>
+          <div class="swiper mySwiper container">
+            <div class="swiper-wrapper content">
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Vijay Kumar</span>
+                    <span class="profession">American Home Care</span>
+                  </div>
+                  <div class="ratings">
+                   <span class="paise"><i class="fa-solid fa-phone"></i> 7041640947 </span>
+
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/American-Home-Care-Nursing-Services-Near-Tikoniya-Park-Agra-Cantt/0562PX562-X562-240213154019-U3G1_BZDET?ncatid=12087781&area=&search=Top%20Patient%20Care%20Taker%20Services%20in%20Agra&mncatname=Patient%20Care%20Taker%20Services&abd_btn=&abd_heading=&bd=1&"> <button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Navaj Khan</span>
+                    <span class="profession"> Health Service</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 8511640798 </span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/Wellness-Home-Health-Care-Service-Dayal-Bagh/0562PX562-X562-230204124225-C1I7_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Kajal Patel</span>
+                    <span class="profession">Shyam Health Care</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 846040435</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/Shyam-Baba-Health-Home-Care-Fatehabad-Road/0562PX562-X562-240411105340-A5M5_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Nursing Services</span>
+                    <span class="profession">Arya Health Care</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 8401966386</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/Arya-Health-Home-Care-Opp-Naga-Ji-Medical-Avas-Vikash-Colony/0562PX562-X562-230816173033-S8U6_BZDET?ncatid=12087781&area=&search=Top%20Patient%20Care%20Taker%20Services%20in%20Agra&mncatname=Patient%20Care%20Taker%20Services&abd_btn=&abd_heading=&bd=1&">                    <button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Kishan Mishra</span>
+                    <span class="profession">Kishan Clinics</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 7942693923 </span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/Arya-Health-Home-Care-Opp-Naga-Ji-Medical-Avas-Vikash-Colony/0562PX562-X562-230816173033-S8U6_BZDET?ncatid=12087781&area=&search=Top%20Patient%20Care%20Taker%20Services%20in%20Agra&mncatname=Patient%20Care%20Taker%20Services&abd_btn=&abd_heading=&bd=1&">                    <button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Ajmal Khan</span>
+                    <span class="profession">Health Service</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 7942693988 </span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/Arya-Health-Home-Care-Opp-Naga-Ji-Medical-Avas-Vikash-Colony/0562PX562-X562-230816173033-S8U6_BZDET?ncatid=12087781&area=&search=Top%20Patient%20Care%20Taker%20Services%20in%20Agra&mncatname=Patient%20Care%20Taker%20Services&abd_btn=&abd_heading=&bd=1&">                    <button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Pari Singh</span>
+                    <span class="profession">Pari Healthcare</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 9724776632 </span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/Pari-Health-Home-Care-Services-Near-GG-Nursing-Home-Sanjay-Place/0562PX562-X562-220716125057-V9R3_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Sonam Kumari </span>
+                    <span class="profession">Sonam Healthcare</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 7947106424</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/Sonam-Healthcare-Near-Dr-Manoj-Jain-Ram-Bagh/0562PX562-X562-200210170239-H8V5_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Anshika Gupta</span>
+                    <span class="profession">Anshika Nursing</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 8401922933 </span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/Anshika-Home-Nursing-Care-Bureau-Near-Kar-Kunj-Chauraha-Sikandra/0562PX562-X562-190723161412-Q3N8_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Dr.N.P.Singh</span>
+                    <span class="profession">Deaf Expert</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 7947153040</span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/Dr-N-P-Singh-Opposite-Oriental-Bank-Of-Commerce-Kamla-Nagar/0562PX562-X562-101103172416-D5P7_BZDET?ncatid=10189442&area=&search=Best%20ENT%20Doctors%20in%20Agra%20-%20Book%20Appointment%20Online&mncatname=ENT%20Doctors&abd_btn=&abd_heading=&bd=1&"><button class="aboutMe"> <i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Dr Alka Singhal</span>
+                    <span class="profession">Deaf,Dumb Expert</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"></i> 7942682009 </span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/Dr-Alka-Singhal-and-Drvikrant-Singhal-Opposite-Sumeet-Rahul-School-Kamla-Nagar/0562PX562-X562-140717111659-U1T1_BZDET?ncatid=10189442&area=&search=Best%20ENT%20Doctors%20in%20Agra%20-%20Book%20Appointment%20Online&mncatname=ENT%20Doctors&abd_btn=&abd_heading=&bd=1&"><button class="aboutMe"><i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" swiper-slide cards yansh">
+                <div class="cards-contents">
+                  <div class="images">
+                    <img src="{% static 'images/6.jpg' %}" alt="">
+                  </div>
+                  <div class="names-profession">
+                    <span class="names">Dr. Amanpreet Kaur</span>
+                    <span class="profession">Disable Specialist</span>
+                  </div>
+                  <div class="ratings">
+                    <span class="paise"><i class="fa-solid fa-phone"> 8505589645 </i></span>
+                  </div>
+                  <div class="buttoner">
+                    <a href="https://www.justdial.com/Agra/Dr-Alka-Singhal-and-Drvikrant-Singhal-Opposite-Sumeet-Rahul-School-Kamla-Nagar/0562PX562-X562-140717111659-U1T1_BZDET?ncatid=10189442&area=&search=Best%20ENT%20Doctors%20in%20Agra%20-%20Book%20Appointment%20Online&mncatname=ENT%20Doctors&abd_btn=&abd_heading=&bd=1&"><button class="aboutMe"><i class="fa-solid fa-address-card"></i> Apply Now</button></a>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </section>
+
+        <div class="row pad">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/W1.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Vijay Kumar</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">American Home Care</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-location-dot"></i> Agra Cantt, Agra</span>
+                  <span class=" col-12">
+                    <br>
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>3.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:7041640947" class="hov btn  col-12"><i class="fa-solid fa-phone-volume"></i> 7041640947 </a>
+                <a href="https://www.justdial.com/Agra/American-Home-Care-Nursing-Services-Near-Tikoniya-Park-Agra-Cantt/0562PX562-X562-240213154019-U3G1_BZDET?ncatid=12087781&area=&search=Top%20Patient%20Care%20Taker%20Services%20in%20Agra&mncatname=Patient%20Care%20Taker%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/W1.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Dev Kumar</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12">Dev Nursing Services</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> K.H.S.Road Khandari, Agra</span><br>
+                  <span class=" col-12">
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star-half-stroke" style="color: gold;"></i> <span>4.5 / 5</span>
+                  </span>
+                </p>
+                <a href="tel:8511773641" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 8511773641 </a>
+                <a href="https://www.justdial.com/Agra/Dev-Nursing-Service-Near-Kendriya-Vidhyalay-Khandari/0562PX562-X562-230313132136-S1V6_BZDET?ncatid=12087781&area=&search=Top%20Patient%20Care%20Taker%20Services%20in%20Agra&mncatname=Patient%20Care%20Taker%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/W1.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Navaj Khan</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12">Wellness Home Health Service</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Dayal Bagh, Agra</span><br>
+                  <span class=" col-12">
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star-half-stroke" style="color: gold;"></i> <span>4.5 / 5</span>
+                  </span>
+                </p>
+                <a href="tel:8511640798" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 8511640798 </a>
+                <a href="https://www.justdial.com/Agra/Wellness-Home-Health-Care-Service-Dayal-Bagh/0562PX562-X562-230204124225-C1I7_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/N.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center ">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Kajal Patel</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12">Shyam Baba Health Home Care</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Fatehabad Road, Agra</span><br>
+                  <span class=" col-12">
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star-half-stroke" style="color: gold;"></i> <span>4.5 / 5</span>
+                  </span>
+                </p>
+                <a href="tel:8460404350" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 8460404350 </a>
+                <a href="https://www.justdial.com/Agra/Shyam-Baba-Health-Home-Care-Fatehabad-Road/0562PX562-X562-240411105340-A5M5_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mt-5 mb-5">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/W1.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Ajmal Khan</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Home Nursing Successful</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-location-dot"></i> Dayal Bagh, Agra</span>
+                  <span class=" col-12">
+                    <br>
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>3.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:9054523146" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 9054523146 </a>
+                <a href="https://www.justdial.com/Agra/Home-Nursing-Successful-Dayal-Bagh/0562PX562-X562-200625135516-R3L5_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/N.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Nursing Services</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Arya Health Home Care</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Avas Vikash Colony, Agra</span><br>
+                  <span class=" col-12">
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>4.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:8401966386" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 8401966386 </a>
+                <a href="https://www.justdial.com/Agra/Arya-Health-Home-Care-Opp-Naga-Ji-Medical-Avas-Vikash-Colony/0562PX562-X562-230816173033-S8U6_BZDET?ncatid=12087781&area=&search=Top%20Patient%20Care%20Taker%20Services%20in%20Agra&mncatname=Patient%20Care%20Taker%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/N.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Pari Singh</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Pari Health Home Care Services</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Sanjay Place, Agra</span><br>
+                  <span class=" col-12">
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>4.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:9724776632" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 9724776632 </a>
+                <a href="https://www.justdial.com/Agra/Pari-Health-Home-Care-Services-Near-GG-Nursing-Home-Sanjay-Place/0562PX562-X562-220716125057-V9R3_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/W1.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center ">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Kishan Mishra</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12">Kishan Healthcare</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Nunhai, Agra</span><br>
+                  <span class=" col-12">
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star-half-stroke" style="color: gold;"></i> <span>4.5 / 5</span>
+                  </span>
+                </p>
+                <a href="tel:7942693923" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 7942693923 </a>
+                <a href="https://www.justdial.com/Agra/Kishan-Healthcare-Near-State-Bank-Of-India-Nunhai/0562PX562-X562-210120135537-I2A6_BZDET?ncatid=12087781&area=&search=Top%20Patient%20Care%20Taker%20Services%20in%20Agra&mncatname=Patient%20Care%20Taker%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mt-5 mb-5">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/N.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Sonam Kumari</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Sonam Healthcare</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-location-dot"></i> Ram Bagh, Agra</span>
+                  <span class=" col-12">
+                    <br>
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>3.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:7947106424" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 7947106424 </a>
+                <a href="https://www.justdial.com/Agra/Sonam-Healthcare-Near-Dr-Manoj-Jain-Ram-Bagh/0562PX562-X562-200210170239-H8V5_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/N.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Avika Baghel</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Avika Nursing Services</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Bodla, Agra</span><br>
+                  <span class=" col-12">
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>4.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:8401966386" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 8401966386 </a>
+                <a href="https://www.justdial.com/Agra/Arya-Health-Home-Care-Opp-Naga-Ji-Medical-Avas-Vikash-Colony/0562PX562-X562-230816173033-S8U6_BZDET?ncatid=12087781&area=&search=Top%20Patient%20Care%20Taker%20Services%20in%20Agra&mncatname=Patient%20Care%20Taker%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/W1.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Didul Patel</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Shiv Home Care Staff Provide</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Delhi Gate, Agra</span><br>
+                  <span class=" col-12">
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>4.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:7947137775" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 7947137775 </a>
+                <a href="https://www.justdial.com/Agra/Shiv-Home-Care-Staff-Provide-Puspanjali-Hospital-Delhi-Gate/0562PX562-X562-201211164514-G5P3_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/N.png '%}" class="card-img-top"
+                alt="...">
+              <div class="card-body text-center ">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Anshika Gupta</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12">Anshika Home Nursing Care</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Sikandra, Agra</span><br>
+                  <span class=" col-12">
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star-half-stroke" style="color: gold;"></i> <span>4.5 / 5</span>
+                  </span>
+                </p>
+                <a href="tel:8401922933" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 8401922933 </a>
+                <a href="https://www.justdial.com/Agra/Anshika-Home-Nursing-Care-Bureau-Near-Kar-Kunj-Chauraha-Sikandra/0562PX562-X562-190723161412-Q3N8_BZDET?ncatid=10250587&area=&search=Top%20Home%20Nursing%20Services%20in%20Agra&mncatname=Home%20Nursing%20Services&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title text-center position-relative pb-3 mb-3 mx-auto" style="max-width: 600px;">
+          <h1 class="mb-0 sub">Choose Your <span>Specialist</span>  </h1>
+      </div>
+      <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.6s">
+      </div>
+
+        <div class="row mt-5 mb-5">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/DR.jpg '%}" class="card-img-top zoom"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Dr. N P Singh</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Deaf Expert</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-location-dot"></i> Kamla Nagar, Agra</span>
+                  <span class=" col-12">
+                    <br>
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>3.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:7947153040" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 7947153040 </a>
+                <a href="https://www.justdial.com/Agra/Dr-N-P-Singh-Opposite-Oriental-Bank-Of-Commerce-Kamla-Nagar/0562PX562-X562-101103172416-D5P7_BZDET?ncatid=10189442&area=&search=Best%20ENT%20Doctors%20in%20Agra%20-%20Book%20Appointment%20Online&mncatname=ENT%20Doctors&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/DRF.jpg '%}" class="card-img-top zoom"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Dr Alka Singhal</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Deaf & Dumb Specialist</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i>
+                    Kamla Nagar, Agra</span><br>
+                  <span class=" col-12">
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>4.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:7942682009" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 7942682009 </a>
+                <a href="https://www.justdial.com/Agra/Dr-Alka-Singhal-and-Drvikrant-Singhal-Opposite-Sumeet-Rahul-School-Kamla-Nagar/0562PX562-X562-140717111659-U1T1_BZDET?ncatid=10189442&area=&search=Best%20ENT%20Doctors%20in%20Agra%20-%20Book%20Appointment%20Online&mncatname=ENT%20Doctors&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/DRF.jpg '%}" class="card-img-top zoom"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Dr. Meenakshi</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Meenakshi Clinics</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Vikas Marg, New Delhi</span><br>
+                  <span class=" col-12">
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>4.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:9910203871" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 9910203871 </a>
+                <a href="https://www.meenakshiclinics.com" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/DR.jpg '%}" class="card-img-top zoom"
+                alt="...">
+              <div class="card-body text-center ">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Dr. Sohan Lal Broor</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12">Indraprastha Apollo Hospitals</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Sarita Vihar, Delhi</span><br>
+                  <span class=" col-12">
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star-half-stroke" style="color: gold;"></i> <span>4.5 / 5</span>
+                  </span>
+                </p>
+                <a href="tel:1860 500 1066" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 1860 500 1066 </a>
+                <a href="https://www.bing.com/search?q=deaf+and+dumb+specialist+doctors+near+me&form=ANSPH1&refig=59010f6bed224d66ac8aa1868e7be4e5&pc=U531" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mt-5 mb-5">
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/DR.jpg '%}" class="card-img-top zoom"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Dr. Ashwani Kumar</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">AshwaniKumar Clinics</span><br>
+                  <span class=" col-12"><i class="fa-solid fa-location-dot"></i> Khandari, Agra</span>
+                  <span class=" col-12">
+                    <br>
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>3.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:9054459795" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 9054459795 </a>
+                <a href="https://www.justdial.com/Agra/Dr-Ashwani-Kumar-Khandari/0562PX562-X562-190525005549-C7Q5_BZDET?ncatid=10189442&area=&search=Best%20ENT%20Doctors%20in%20Agra%20-%20Book%20Appointment%20Online&mncatname=ENT%20Doctors&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/DRF.jpg '%}" class="card-img-top zoom"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Dr. Amanpreet Kaur</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Deafness Terminology & Myths</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i>
+                    Kamla Nagar, Agra</span><br>
+                  <span class=" col-12">
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>4.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:8505589645" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 8505589645 </a>
+                <a href="https://www.justdial.com/Agra/Dr-Alka-Singhal-and-Drvikrant-Singhal-Opposite-Sumeet-Rahul-School-Kamla-Nagar/0562PX562-X562-140717111659-U1T1_BZDET?ncatid=10189442&area=&search=Best%20ENT%20Doctors%20in%20Agra%20-%20Book%20Appointment%20Online&mncatname=ENT%20Doctors&abd_btn=&abd_heading=&bd=1&" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/DR.jpg '%}" class="card-img-top zoom"
+                alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Dr. Mohit Singh</span>
+                </h5>
+                <p class="card-text ">
+                  <span class=" col-12"></span>
+                  <span class=" col-12">Deaf and Dumb Clinics</span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Karkar Duma, Delhi</span><br>
+                  <span class=" col-12">
+                    <span class=" col-12">
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-solid fa-star " style="color: gold;"></i>
+                      <i class="fa-regular fa-star text-dark"></i>
+                      <span>4.0 / 5</span>
+                    </span>
+                  </span>
+                </p>
+                <a href="tel:9313555190" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 9313555190 </a>
+                <a href="https://www.meenakshiclinics.com" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-3">
+            <div class="card yansh" aria-hidden="true">
+              <img src="{% static 'images/DRF.jpg '%}" class="card-img-top zoom"
+                alt="...">
+              <div class="card-body text-center ">
+                <h5 class="card-title placeholder-glow">
+                  <span class=" col-12">Dr. Nisha Singh</span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                  <span class=" col-12">Jyoti Health Clinics </span><br>
+                  <span class="col-12"><i class="fa-solid fa-location-dot"></i> Sarita Vihar, Delhi</span><br>
+                  <span class=" col-12">
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star " style="color: gold;"></i>
+                    <i class="fa-solid fa-star-half-stroke" style="color: gold;"></i> <span>4.5 / 5</span>
+                  </span>
+                </p>
+                <a href="tel:9760244011" class="hov btn   col-12"><i class="fa-solid fa-phone-volume"></i> 9760244011 </a>
+                <a href="https://www.bing.com/search?q=deaf+and+dumb+specialist+doctors+near+me&form=ANSPH1&refig=59010f6bed224d66ac8aa1868e7be4e5&pc=U531" class="hov btn  mt-2 col-12"><i class="fa-solid fa-address-card"></i> About More </a>
+              </div>
+              <div class="card-footer text-center">
+                <small class="text-body-secondary">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 4,
+    spaceBetween: 60,
+    slidesPerGroup: 3,
+    loop: true,
+    autoplay:true,
+    autoplayTimeout:1000,
+    autoplayHoverPause:true,
+    loopFillGroupWithBlank: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl:".swiper-button-next",
+      prevEl:".swiper-button-prev",
+    }
+  });
+</script>
+<script src="abhilash.js"></script>
+</body>
+</html>
+{% endblock %}
